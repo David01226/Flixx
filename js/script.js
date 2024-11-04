@@ -20,6 +20,7 @@ async function displayPopularMovies() {
 
   results.forEach((movie) => {
     const div = document.createElement('div');
+    console.log(movie)
     div.classList.add('card');
     div.innerHTML = `
           <a href="movie-details.html?id=${movie.id}">
@@ -155,6 +156,21 @@ async function displayMovieDetails() {
   `;
 
   document.querySelector('#movie-details').appendChild(div);
+  getMovieVideoURL(movie.id)
+}
+
+
+async function getMovieVideoURL(movieId) {
+  const videoData = await fetchAPIData(`movie/${movieId}/videos`);
+  const videos = videoData.results
+  let youtubeURL = 'https://www.youtube.com/watch?v='
+  for (let i = 0; i < videos.length; i++) {
+    if (videos[i].type === 'Trailer') {
+      youtubeURL += videos[i].key
+      break; // Exit the loop after finding the first trailer
+    }
+  }
+  console.log(youtubeURL)
 }
 
 // Display Show Details
