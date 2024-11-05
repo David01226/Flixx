@@ -1,5 +1,3 @@
-console.log('start all data fetch')
-
 // Global Variables
 const global = {
   currentPage: window.location.pathname,
@@ -505,5 +503,3 @@ function init() {
 }
 
 document.addEventListener('DOMContentLoaded', init)
-
-console.log('end all data fetch')
