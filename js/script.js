@@ -1,3 +1,5 @@
+console.log('start all data fetch')
+
 // Global Variables
 const global = {
   currentPage: window.location.pathname,
@@ -94,9 +96,33 @@ async function displayMovieDetails() {
   // Overlay for background image
   displayBackgroundImage('movie', movie.backdrop_path);
 
+
+  // movie video
+  const videoData = await fetchAPIData(`movie/${movieId}/videos`);
+  const videos = videoData.results
+  let youtubeURL = "https://www.youtube.com/embed/"
+  for (let i = 0; i < videos.length; i++) {
+    if (videos[i].type === 'Trailer') {
+      youtubeURL += videos[i].key
+      break; // Exit the loop after finding the first trailer
+    }
+  }
+  console.log(youtubeURL)
+
   const div = document.createElement('div');
 
   div.innerHTML = `
+  <div style="height:100vh; width:100%; border: 2px solid red; overflow: hidden; position: absolute; top: 0; left: 0; z-index: -1;">
+    <iframe 
+      style="transform: scale(1.5);"
+      width="100%" 
+      height="100%" 
+      src="${youtubeURL}?autoplay=1&mute=1" 
+      frameborder="0" 
+      allow="autoplay; encrypted-media" 
+      allowfullscreen>
+    </iframe>
+  </div>
   <div class="details-top">
   <div>
   ${
@@ -156,22 +182,9 @@ async function displayMovieDetails() {
   `;
 
   document.querySelector('#movie-details').appendChild(div);
-  getMovieVideoURL(movie.id)
 }
 
 
-async function getMovieVideoURL(movieId) {
-  const videoData = await fetchAPIData(`movie/${movieId}/videos`);
-  const videos = videoData.results
-  let youtubeURL = 'https://www.youtube.com/watch?v='
-  for (let i = 0; i < videos.length; i++) {
-    if (videos[i].type === 'Trailer') {
-      youtubeURL += videos[i].key
-      break; // Exit the loop after finding the first trailer
-    }
-  }
-  console.log(youtubeURL)
-}
 
 // Display Show Details
 async function displayShowDetails() {
@@ -492,3 +505,5 @@ function init() {
 }
 
 document.addEventListener('DOMContentLoaded', init)
+
+console.log('end all data fetch')
