@@ -23,7 +23,7 @@ async function displayPopularMovies() {
     console.log(movie)
     div.classList.add('card');
     div.innerHTML = `
-          <a href="movie-details.html?id=${movie.id}">
+          <a href="movie-details?id=${movie.id}">
             ${
               movie.poster_path
                 ? `<img
@@ -58,7 +58,7 @@ async function displayPopularShows() {
     const div = document.createElement('div');
     div.classList.add('card');
     div.innerHTML = `
-          <a href="tv-details.html?id=${show.id}">
+          <a href="tv-details?id=${show.id}">
             ${
               show.poster_path
                 ? `<img
@@ -84,104 +84,6 @@ async function displayPopularShows() {
     document.querySelector('#popular-shows').appendChild(div);
   });
 }
-
-// Display Movie Details
-async function displayMovieDetails() {
-  const movieId = window.location.search.split('=')[1];
-
-  const movie = await fetchAPIData(`movie/${movieId}`);
-
-  // Overlay for background image
-  displayBackgroundImage('movie', movie.backdrop_path);
-
-
-  // movie video
-  const videoData = await fetchAPIData(`movie/${movieId}/videos`);
-  const videos = videoData.results
-  let youtubeURL = "https://www.youtube.com/embed/"
-  for (let i = 0; i < videos.length; i++) {
-    if (videos[i].type === 'Trailer') {
-      youtubeURL += videos[i].key
-      break; // Exit the loop after finding the first trailer
-    }
-  }
-  console.log(youtubeURL)
-
-  const div = document.createElement('div');
-
-  div.innerHTML = `
-  <div style="height:100vh; width:100%; border: 2px solid red; overflow: hidden; position: absolute; top: 0; left: 0; z-index: -1;">
-    <iframe 
-      style="transform: scale(1.5);"
-      width="100%" 
-      height="100%" 
-      src="${youtubeURL}?autoplay=1&mute=1" 
-      frameborder="0" 
-      allow="autoplay; encrypted-media" 
-      allowfullscreen>
-    </iframe>
-  </div>
-  <div class="details-top">
-  <div>
-  ${
-    movie.poster_path
-      ? `<img
-    src="https://image.tmdb.org/t/p/w500${movie.poster_path}"
-    class="card-img-top"
-    alt="${movie.title}"
-  />`
-      : `<img
-  src="../images/no-image.jpg"
-  class="card-img-top"
-  alt="${movie.title}"
-/>`
-  }
-  </div>
-  <div>
-    <h2>${movie.title}</h2>
-    <p>
-      <i class="fas fa-star text-primary"></i>
-      ${movie.vote_average.toFixed(1)} / 10
-    </p>
-    <p class="text-muted">Release Date: ${movie.release_date}</p>
-    <p>
-      ${movie.overview}
-    </p>
-    <h5>Genres</h5>
-    <ul class="list-group">
-      ${movie.genres.map((genre) => `<li>${genre.name}</li>`).join('')}
-    </ul>
-    <a href="${
-      movie.homepage
-    }" target="_blank" class="btn">Visit Movie Homepage</a>
-  </div>
-</div>
-<div class="details-bottom">
-  <h2>Movie Info</h2>
-  <ul>
-    <li><span class="text-secondary">Budget:</span> $${addCommasToNumber(
-      movie.budget
-    )}</li>
-    <li><span class="text-secondary">Revenue:</span> $${addCommasToNumber(
-      movie.revenue
-    )}</li>
-    <li><span class="text-secondary">Runtime:</span> ${
-      movie.runtime
-    } minutes</li>
-    <li><span class="text-secondary">Status:</span> ${movie.status}</li>
-  </ul>
-  <h4>Production Companies</h4>
-  <div class="list-group">
-    ${movie.production_companies
-      .map((company) => `<span>${company.name}</span>`)
-      .join(', ')}
-  </div>
-</div>
-  `;
-
-  document.querySelector('#movie-details').appendChild(div);
-}
-
 
 
 // Display Show Details
@@ -305,7 +207,7 @@ function displaySearchResults(results) {
     const div = document.createElement('div');
     div.classList.add('card');
     div.innerHTML = `
-          <a href="${global.search.type}-details.html?id=${result.id}">
+          <a href="${global.search.type}-details?id=${result.id}">
             ${
               result.poster_path
                 ? `<img
@@ -372,64 +274,6 @@ function displayPagination() {
   });
 }
 
-// Display Slider Movies
-async function displaySlider() {
-  const { results } = await fetchAPIData('movie/now_playing');
-  results.forEach((movie) => {
-    const div = document.createElement('div')
-    div.classList.add('swiper-slide')
-    div.innerHTML = `
-      <a href="movie-details.html?id=${movie.id}">
-        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
-      </a>
-      <h4 class="swiper-rating">
-        <i class="fas fa-star text-secondary"></i> ${movie.vote_average} / 10
-      </h4>
-    ` 
-    document.querySelector('.swiper-wrapper').appendChild(div);
-  })
-  initSwiper();
-}
-
-// Initialise the swiper
-function initSwiper() {
-  const swiper = new Swiper('.swiper', {
-    slidesPerView: 1,
-    spaceBetween: 30,
-    freeMode: true,
-    loop: true,
-    autoplay: {
-      delay: 4000,
-      disableOnInteraction: false
-    },
-    breakpoints: {
-      500: {
-        slidesPerView: 2
-      },
-      700: {
-        slidesPerView: 3
-      },
-      1200: {
-        slidesPerView: 4
-      }
-    }
-  })
-}
-
-// Fetch Data from TMDB API
-async function fetchAPIData(endpoint) {
-  const API_KEY = global.api.apiKey;
-  const API_URL = global.api.apiUrl;
-
-  // showSpinner(); // show spinner before fetch request
-
-  const response = await fetch(`${API_URL}${endpoint}?api_key=${API_KEY}&language=en-US`);
-  const data = await response.json();
-
-  // hideSpinner(); // hide spinner after data is fetched
-  return data;
-}
-
 
 // Make request to search
 async function searchAPIData() {
@@ -443,15 +287,6 @@ async function searchAPIData() {
 
   // hideSpinner(); // hide spinner after data is fetched
   return data;
-}
-
-
-function showSpinner() {
-  document.querySelector('.spinner').classList.add('show')
-}
-
-function hideSpinner() {
-  document.querySelector('.spinner').classList.remove('show')
 }
 
 // Highlight Active link
@@ -473,28 +308,24 @@ function showAlert(message, className = 'error') {
   setTimeout(() => alertEl.remove(), 3000);
 }
 
-function addCommasToNumber(number) {
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-}
-
 // Init App
 function init() {
   switch (global.currentPage) {
       case '/':
-      case '/index.html':
+      case '/index':
         displayPopularMovies();
         displaySlider();
         break;
-      case '/shows.html':
+      case '/shows':
         displayPopularShows();
         break;
-      case '/movie-details.html':
+      case '/movie-details':
         displayMovieDetails();
         break;
-      case '/tv-details.html':
+      case '/tv-details':
         displayShowDetails();
         break;
-      case '/search.html':
+      case '/search':
         search();
         break;
   }
@@ -502,4 +333,4 @@ function init() {
   highlightActiveLink();
 }
 
-document.addEventListener('DOMContentLoaded', init)
+// document.addEventListener('DOMContentLoaded', init)

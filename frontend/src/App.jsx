@@ -1,20 +1,31 @@
 import './App.css'
-import Footer from "./components/Footer/Footer"
 import Header from "./components/Header/Header"
-import NowPlaying from "./components/NowPlaying/NowPlaying"
-import PopularMovies from "./components/PopularMovies/PopularMovies"
-import Search from "./components/Search/Search"
+import Footer from "./components/Footer/Footer"
+import HomePage from "./pages/HomePage"
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import MovieDetails from "./pages/MovieDetails";
+import ShowDeatils from "./pages/ShowDetails";
+import Search from "./pages/Search";
+import Shows from "./pages/Shows";
 
 function App() {
 
   return (
     <> 
-    <Header />
-    <NowPlaying />
-    <Search />
-    <PopularMovies />
-    <Footer />
-    <div className="spinner"></div>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path='/' element={ <HomePage />} />
+        <Route path='/movie' element={<MovieDetails />}>
+          <Route path=':movieId' element={<MovieDetails />} />
+        </Route>
+        <Route path='/show-details' element={ <ShowDeatils />} />
+        <Route path='/show' element={ <Shows />} />
+        <Route path='/search' element={ <Search />} />
+      </Routes>
+      <Footer />
+      <div className="spinner"></div>
+    </BrowserRouter>
     </>
   )
 }
