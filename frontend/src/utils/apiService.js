@@ -8,7 +8,7 @@ export async function fetchAPIData(endpoint) {
   }
 
   try {
-    const response = await fetch(`${API_URL}${endpoint}?api_key=${API_KEY}&language=en-US`);
+    const response = await fetch(`${API_URL}${endpoint}?api_key=${API_KEY}&language=en-US&with_origin_country=US&with_original_language=en&sort_by=popularity.desc`);
     if (!response.ok) {
       throw new Error(`Error fetching data from endpoint ${endpoint}: ${response.statusText}`);
     }

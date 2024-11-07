@@ -20,7 +20,7 @@ function App() {
           <Route path=':movieId' element={<MovieDetails />} />
         </Route>
         <Route path='/show-details' element={ <ShowDeatils />} />
-        <Route path='/show' element={ <Shows />} />
+        <Route path='/shows' element={ <Shows />} />
         <Route path='/search' element={ <Search />} />
       </Routes>
       <Footer />

@@ -28,7 +28,7 @@ const HomePage = () => {
     }
   }
 
-  // Call getNowPlaying on component mount
+  // Call functions on component mount
   useEffect(() => {
     getNowPlaying();
     getPopularMovies();
