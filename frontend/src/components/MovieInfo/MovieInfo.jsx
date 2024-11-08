@@ -15,7 +15,7 @@ const MovieInfo = ({movie, youtubeURL}) => {
   return (
     <section className="container">
       <div className="back">
-        <a className="btn" href="index.html">Back To Movies</a>
+        <a className="btn" href="/">Back To Movies</a>
       </div>
       <div id="movie-details">
         <div style={{

@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import NowPlaying from "../components/NowPlaying/NowPlaying"
 import PopularMovies from "../components/PopularMovies/PopularMovies"
-import Search from "../components/Search/Search"
+import SearchBar from "../components/SearchBar/SearchBar"
 import { fetchAPIData } from '../utils/apiService'
 
 const HomePage = () => {
@@ -38,7 +38,7 @@ const HomePage = () => {
   return (
     <>
       <NowPlaying results={nowPlaying}/>
-      <Search />
+      <SearchBar />
       <PopularMovies results={popularMovies}/>
     </>
   )

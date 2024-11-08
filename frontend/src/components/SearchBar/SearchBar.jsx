@@ -1,12 +1,12 @@
 import React from 'react'
-import './Search.css'
+import './SearchBar.css'
 
 const Search = () => {
   return (
     <section className="search">
       <div className="container">
         <div id="alert"></div>
-        <form action="/search.html" className="search-form">
+        <form action="/search" className="search-form">
           <div className="search-radio">
             <input type="radio" id="movie" name="type" value="movie" checked />
             <label htmlFor="movies">Movies</label>
