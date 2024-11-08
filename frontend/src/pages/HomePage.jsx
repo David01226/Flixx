@@ -3,6 +3,7 @@ import NowPlaying from "../components/NowPlaying/NowPlaying"
 import PopularMovies from "../components/PopularMovies/PopularMovies"
 import SearchBar from "../components/SearchBar/SearchBar"
 import { fetchAPIData } from '../utils/apiService'
+import FeaturedMedia from "../components/FeaturedMedia/FeaturedMedia";
 
 const HomePage = () => {
   const [nowPlaying, setNowPlaying] = useState([]);
@@ -37,6 +38,7 @@ const HomePage = () => {
 
   return (
     <>
+      <FeaturedMedia results={popularMovies}/>
       <NowPlaying results={nowPlaying}/>
       <SearchBar />
       <PopularMovies results={popularMovies}/>
