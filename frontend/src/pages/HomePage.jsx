@@ -4,6 +4,7 @@ import PopularMovies from "../components/PopularMovies/PopularMovies"
 import SearchBar from "../components/SearchBar/SearchBar"
 import { fetchAPIData } from '../utils/apiService'
 import FeaturedMedia from "../components/FeaturedMedia/FeaturedMedia";
+import MediaSlider from "../components/MediaSlider/MediaSlider";
 
 const HomePage = () => {
   const [nowPlaying, setNowPlaying] = useState([]);
@@ -39,9 +40,15 @@ const HomePage = () => {
   return (
     <>
       <FeaturedMedia results={popularMovies}/>
-      <NowPlaying results={nowPlaying}/>
+      <MediaSlider results={popularMovies} title='Popular Movies'/>
+      <MediaSlider results={popularMovies} title='Popular Movies'/>
+      <MediaSlider results={popularMovies} title='Popular Movies'/>
+      <MediaSlider results={popularMovies} title='Popular Movies'/>
+      <MediaSlider results={popularMovies} title='Popular Movies'/>
+      <MediaSlider results={popularMovies} title='Popular Movies'/>
+      {/* <NowPlaying results={nowPlaying}/>
       <SearchBar />
-      <PopularMovies results={popularMovies}/>
+      <PopularMovies results={popularMovies}/> */}
     </>
   )
 }
