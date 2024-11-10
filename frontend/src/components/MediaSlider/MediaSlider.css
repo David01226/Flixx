@@ -1,3 +1,8 @@
 .media-slider {
   margin-bottom: 3vw;
 }
+
+.media-slider__media-poster {
+  border-radius: .2vw;
+  overflow: hidden;
+}
