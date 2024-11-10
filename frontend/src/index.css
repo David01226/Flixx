@@ -229,7 +229,6 @@ ul {
 
 section.now-playing {
   padding: 60px;
-  background: url(../images/showcase-bg.jpg) no-repeat center center/cover;
 }
 
 section h2 {
@@ -574,15 +573,21 @@ section h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   border-radius: 4px;
   padding: 0.474rem 1.54rem 0.474rem 1.303rem;
   font-size: 1.063rem;
   font-weight: 500;
   line-height: 1.54rem;
+  border: none;
 }
 
 .play-btn {
+  background-color: #ffffff;
+  color: #000;
+}
+
+.mute-btn {
   background-color: #ffffff;
   color: #000;
 }
