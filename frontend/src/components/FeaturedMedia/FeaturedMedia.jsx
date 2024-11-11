@@ -12,8 +12,8 @@ const FeaturedMedia = ({ results }) => {
 
   useEffect(() => {
     if (results && results.length > 0) {
-      setMovie(results[2]);
-      setMovieId(results[2].id);
+      setMovie(results[5]);
+      setMovieId(results[5].id);
     }
   }, [results]);
 
@@ -26,7 +26,7 @@ const FeaturedMedia = ({ results }) => {
         const videos = videoData.results;
         const trailer = videos.find(video => video.type === 'Trailer');
         if (trailer) {
-          setYoutubeURL(`https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1&controls=0&modestbranding=1&enablejsapi=1`);
+          setYoutubeURL(`https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1&controls=0&modestbranding=1&enablejsapi=1&cc_load_policy=0`);
         }
       } catch (error) {
         console.error("Error fetching video data:", error);
@@ -37,7 +37,7 @@ const FeaturedMedia = ({ results }) => {
   }, [movieId]);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowBackdrop(false), 3000);
+    const timer = setTimeout(() => setShowBackdrop(false), 5000);
     return () => clearTimeout(timer);
     
   }, [youtubeURL]);

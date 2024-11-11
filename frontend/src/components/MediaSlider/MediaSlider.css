@@ -6,3 +6,10 @@
   border-radius: .2vw;
   overflow: hidden;
 }
+
+.media-slider h3 {
+  color: #e5e5e5;
+  font-size: 1.4vw;
+  font-weight: 500;
+  margin: 0 0 .5em;
+}

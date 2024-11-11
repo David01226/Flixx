@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './MediaSlider.css'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, Autoplay} from 'swiper/modules';
+import { fetchCustomAPIData } from '../../utils/apiService';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -10,7 +11,23 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
 
-const MediaSlider = ({ results, title }) => {
+const MediaSlider = ({ title, endpoint, params }) => {
+  const [results, setResults] = useState([]);
+
+  // Fetch popular movie data
+  async function getSliderData(endpoint, params) {
+    try {
+      const { results } = await fetchCustomAPIData(endpoint, params);
+      setResults(results);
+    } catch (error) {
+      console.error("Error fetching popular movie data:", error);
+    }
+  }
+
+  useEffect(() => {
+    getSliderData(endpoint, params);
+  }, []);
+
   return (
     <div className="media-slider">
       <div className="media-slider__wrapper container">
