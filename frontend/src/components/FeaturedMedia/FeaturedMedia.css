@@ -1,7 +1,7 @@
 
 .featured-media {
   width: 100%;
-  margin-bottom: -5%;
+  margin-bottom: -11%;
   position: relative;
 }
 
@@ -39,8 +39,8 @@
   position: relative;
   width: 100%;
   padding-top: 56.25%; /* 16:9 aspect ratio */
-  padding-top: 42.86%; 
-  padding-top: 50%; 
+  /* padding-top: 42.86%; 
+  padding-top: 50%;  */
   overflow: hidden;
 }
 
@@ -53,11 +53,12 @@
   height: 100%;
   object-fit: cover;
   pointer-events: none;
+  z-index: -1;
 }
 
 .featured-media__meta {
   position: absolute;
-  bottom: 18%;
+  bottom: 25%;
   left: 60px;
   width: 40%;
   display: flex;
@@ -95,12 +96,12 @@
   left: 0;
   width: 100%;
   height: auto;
-  z-index: 1;
+  z-index: -1;
 }
 
 .featured-media__video-controls {
   position: absolute;
-  bottom: 18%;
+  bottom: 25%;
   right: 60px;
   display: flex;
   flex-direction: column;

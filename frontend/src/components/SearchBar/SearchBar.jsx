@@ -3,7 +3,7 @@ import './SearchBar.css'
 
 const Search = () => {
   return (
-    <section className="search">
+    <section className="search page-width">
       <div className="container">
         <div id="alert"></div>
         <form action="/search" className="search-form">

@@ -3,7 +3,7 @@ import './MovieInfo.css'
 
 
 const MovieInfo = ({movie, youtubeURL}) => {
-
+console.log(movie)
   function addCommasToNumber(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
@@ -13,34 +13,24 @@ const MovieInfo = ({movie, youtubeURL}) => {
   }
 
   return (
-    <section className="container">
-      <div className="back">
-        <a className="btn" href="/">Back To Movies</a>
+    <>
+      <div className="backdrop-wrapper">
+        {movie.backdrop_path ? (
+          <img
+            src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+            className="movie-details__backdrop"
+            alt={movie.title}
+          />
+        ) : 
+          <></>
+        }
       </div>
-      <div id="movie-details">
-        <div style={{
-          height: "100vh",
-          width: "100%",
-          border: "2px solid red",
-          overflow: "hidden",
-          position: "absolute",
-          top: 0,
-          left: 0,
-          zIndex: -1
-        }}>
-          <iframe
-            style={{ transform: "scale(1.5)" }}
-            width="100%"
-            height="100%"
-            src={`${youtubeURL}?rel=0&autoplay=1&mute=1`}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
-
+      <section className="movie-details page-width">
+        {/* <div className="back">
+          <a className="btn" href="/">Back To Movies</a>
+        </div> */}
         <div className="details-top">
-          <div>
+          <div className="details-top__poster">
             {movie.poster_path ? (
               <img
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -55,7 +45,7 @@ const MovieInfo = ({movie, youtubeURL}) => {
               />
             )}
           </div>
-          <div>
+          <div className="details-top__meta">
             <h2>{movie.title}</h2>
             <p>
               <i className="fas fa-star text-primary"></i>
@@ -69,7 +59,7 @@ const MovieInfo = ({movie, youtubeURL}) => {
                 <li key={i}>{genre.name}</li>
               ))}
             </ul>
-            <a href={movie.homepage} target="_blank" rel="noopener noreferrer" className="btn">
+            <a href={movie.homepage} target="_blank" rel="noopener noreferrer" className="more-info-btn btn ">
               Visit Movie Homepage
             </a>
           </div>
@@ -86,14 +76,15 @@ const MovieInfo = ({movie, youtubeURL}) => {
           <h4>Production Companies</h4>
           <div className="list-group">
             {movie.production_companies.map((company, i) => (
-              <span key={i}>{company.name}</span>
-            )).join(", ")}
+              <span key={i}>
+                {company.name}
+                {i < movie.production_companies.length - 1 ? ", " : ""}
+              </span>
+            ))}
           </div>
         </div>
-      </div>
-    </section>
-
-
+      </section>
+    </>
   )
 }
 

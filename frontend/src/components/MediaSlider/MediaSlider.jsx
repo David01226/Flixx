@@ -37,10 +37,11 @@ const MediaSlider = ({ title, endpoint, params }) => {
           slidesPerView={2.5}
           spaceBetween={15}
           freeMode={true}
-          loop={true}
+          loop={false}
+          navigation={true}
           breakpoints={{
             767: { slidesPerView: 5.5 },
-            1025: { slidesPerView: 7.5 },
+            1025: { slidesPerView: 7 },
           }}
         >
           {results.map((movie, i) => (
