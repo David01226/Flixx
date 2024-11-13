@@ -2,44 +2,31 @@ import React from 'react'
 import './ShowInfo.css'
 
 
-const ShowInfo = ({show, youtubeURL, trailerFound}) => {
+const ShowInfo = ({show}) => {
 
-  if (!show && !youtubeURL) {
+  if (!show) {
     return <></>
   }
 
   return (
-    <section className="container">
-      <div className="back">
-        <a className="btn" href="/shows">Back To Shows</a>
+    <>
+      <div className="backdrop-wrapper">
+        {show.backdrop_path ? (
+          <img
+            src={`https://image.tmdb.org/t/p/original${show.backdrop_path}`}
+            className="media-details__backdrop"
+            alt={show.title}
+          />
+        ) : 
+          <></>
+        }
       </div>
-      <div id="show-details">
-        {trailerFound && (
-          <div
-            style={{
-              height: "100vh",
-              width: "100%",
-              border: "2px solid red",
-              overflow: "hidden",
-              position: "absolute",
-              top: 0,
-              left: 0,
-              zIndex: -1
-            }}
-          >
-            <iframe
-              style={{ transform: "scale(1.5)" }}
-              width="100%"
-              height="100%"
-              src={`${youtubeURL}?rel=0&autoplay=1&mute=1`}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
-        )}
+      <section className="media-details container">
+        {/* <div className="back">
+          <a className="btn" href="/shows">Back To Shows</a>
+        </div> */}
         <div className="details-top">
-          <div>
+          <div className="details-top__poster">
             {show.poster_path ? (
               <img
                 src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
@@ -54,7 +41,7 @@ const ShowInfo = ({show, youtubeURL, trailerFound}) => {
               />
             )}
           </div>
-          <div>
+          <div className="details-top__meta">
             <h2>{show.name}</h2>
             <p>
               <i className="fas fa-star text-primary"></i>
@@ -88,13 +75,16 @@ const ShowInfo = ({show, youtubeURL, trailerFound}) => {
           </ul>
           <h4>Production Companies</h4>
           <div className="list-group">
-            {show.production_companies.map((company) => (
-              <span key={company.id}>{company.name}</span>
+            {show.production_companies.map((company, i) => (
+              <span key={i}>
+                {company.name}
+                {i < show.production_companies.length - 1 ? ", " : ""}
+              </span>
             ))}
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }
 

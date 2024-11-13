@@ -28,6 +28,13 @@ const MediaSlider = ({ title, endpoint, params }) => {
     getSliderData(endpoint, params);
   }, []);
 
+  let mediaType;
+  if (endpoint.includes('movie')) {
+    mediaType = 'movie';
+  } else {
+    mediaType = 'show';
+  }
+
   return (
     <div className="media-slider">
       <div className="media-slider__wrapper container">
@@ -39,6 +46,7 @@ const MediaSlider = ({ title, endpoint, params }) => {
           freeMode={true}
           loop={false}
           navigation={true}
+          pagination={true}
           breakpoints={{
             767: { slidesPerView: 5.5 },
             1025: { slidesPerView: 7 },
@@ -47,7 +55,7 @@ const MediaSlider = ({ title, endpoint, params }) => {
           {results.map((movie, i) => (
             <SwiperSlide key={movie.id}>
               <div className="media-slider__media-poster">
-                <a href={`movie?id=${movie.id}`}>
+                <a href={`${mediaType}?id=${movie.id}`}>
                   <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
                 </a>
               </div>

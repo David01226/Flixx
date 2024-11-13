@@ -18,14 +18,14 @@ console.log(movie)
         {movie.backdrop_path ? (
           <img
             src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-            className="movie-details__backdrop"
+            className="media-details__backdrop"
             alt={movie.title}
           />
         ) : 
           <></>
         }
       </div>
-      <section className="movie-details page-width">
+      <section className="media-details page-width">
         {/* <div className="back">
           <a className="btn" href="/">Back To Movies</a>
         </div> */}
@@ -56,7 +56,7 @@ console.log(movie)
             <h5>Genres</h5>
             <ul className="list-group">
               {movie.genres.map((genre, i) => (
-                <li key={i}>{genre.name}</li>
+                <li key={genre.id}>{genre.name}</li>
               ))}
             </ul>
             <a href={movie.homepage} target="_blank" rel="noopener noreferrer" className="more-info-btn btn ">

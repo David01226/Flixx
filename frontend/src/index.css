@@ -19,7 +19,7 @@ html {
   overflow: hidden;
 }
 
-#root:has(.movie-details), #root:has(.search) {
+#root:has(.media-details), #root:has(.search) {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -286,17 +286,19 @@ section h2 {
 }
 
 .swiper-button-prev {
+  opacity: 0!important;
   left: -50px !important;
-  opacity: 1!important;
   color: #ffffff!important;
   top: 52%!important;
+  transition: opacity 0.1s ease-in-out;
 }
 
 .swiper-button-next {
+  opacity: 0!important;
   right: -50px !important;
-  opacity: 1!important;
   color: #ffffff!important;
   top: 52%!important;
+  transition: opacity 0.1s ease-in-out;
 }
 
 .swiper-button-prev:after {
@@ -309,31 +311,68 @@ section h2 {
 
 .swiper-button-disabled {
   opacity: 0!important;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 1s ease-in-out;
 }
 
-.swiper-wrapper:before {
+.swiper:hover .swiper-button-next, .swiper:hover .swiper-button-prev {
+  opacity: 1!important;
+}
+
+.swiper:before {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
+  left: 0px;
   width: 60px;
   height: 100%;
-  background-color: red;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  background: linear-gradient(to right,  #141414, transparent);
+  transform: translateX(-100%);
+  z-index: 2;
+  border-radius: .2vw;
 }
 
-.swiper-wrapper:after {
+.swiper:not(:has(.swiper-button-disabled)):before {
+  opacity: 0.5;
+}
+
+.swiper:after {
   content: '';
   position: absolute;
   top: 0;
   right: 0;
   width: 60px;
   height: 100%;
-  background-color: red;
+  opacity: 0.5;
+  background: linear-gradient(to left,  #141414, transparent);
+  transform: translateX(100%);
+  z-index: 2;
+  border-radius: .2vw;
+}
+
+.swiper-pagination {
+  top: -30px!important;
+  right: 0!important;
+  width: unset!important;
+  left: unset!important;
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+  border-radius: 0!important;
+  height: 2px!important;
+  width: 12px!important;
+  margin: 0 1px!important;
+  background-color: #4d4d4d;
+  opacity: 1!important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #aaa!important;
 }
 
 /* Movie Details */
-.movie-details {
+.media-details {
   margin-top: 100px;
 }
 
@@ -378,7 +417,7 @@ section h2 {
   pointer-events: none;
 }
 
-.movie-details__backdrop {
+.media-details__backdrop {
   width: 100%;
   height: auto;
 }

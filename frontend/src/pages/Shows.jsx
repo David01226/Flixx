@@ -21,10 +21,10 @@ const Shows = () => {
   }, []);
 
   return (
-    <section className="container">
+    <>
       <h2>Popular TV Shows</h2>
       <PopularShows results={popularShows}/>
-    </section>
+    </>
   )
 }
 

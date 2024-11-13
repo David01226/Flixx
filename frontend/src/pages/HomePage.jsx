@@ -1,24 +1,10 @@
 import { React, useState, useEffect } from 'react';
-import NowPlaying from "../components/NowPlaying/NowPlaying"
-import PopularMovies from "../components/PopularMovies/PopularMovies"
-import SearchBar from "../components/SearchBar/SearchBar"
 import { fetchAPIData } from '../utils/apiService'
 import FeaturedMedia from "../components/FeaturedMedia/FeaturedMedia";
 import MediaSlider from "../components/MediaSlider/MediaSlider";
 
 const HomePage = () => {
-  const [nowPlaying, setNowPlaying] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
-
-  // Fetch now playing data
-  async function getNowPlaying() {
-    try {
-      const { results } = await fetchAPIData('movie/now_playing');
-      setNowPlaying(results);
-    } catch (error) {
-      console.error("Error fetching now playing data:", error);
-    }
-  }
 
   // Fetch popular movie data
   async function getPopularMovies() {
@@ -32,7 +18,6 @@ const HomePage = () => {
 
   // Call functions on component mount
   useEffect(() => {
-    getNowPlaying();
     getPopularMovies();
   }, []);
 
@@ -51,10 +36,6 @@ const HomePage = () => {
       <MediaSlider endpoint={'discover/movie'} params={'&with_genres=18&sort_by=popularity.desc&vote_count.gte=100&language=en-US&page=2'} title='Drama Films'/>
       <MediaSlider endpoint={'discover/movie'} params={'&with_genres=10752&sort_by=popularity.desc&vote_count.gte=100&language=en-US&page=2'} title='War Films'/>
       <MediaSlider endpoint={'discover/movie'} params={'&with_genres=10749&sort_by=popularity.desc&vote_count.gte=100&language=en-US&page=2'} title='Romance Films'/>
-
-      {/* <NowPlaying results={nowPlaying}/>
-      <SearchBar />
-      <PopularMovies results={popularMovies}/> */}
     </>
   )
 }

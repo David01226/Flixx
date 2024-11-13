@@ -55,7 +55,7 @@ const FeaturedMedia = ({ results }) => {
           if (event.origin !== 'https://www.youtube.com') return;
           const data = JSON.parse(event.data);
           if (data.event === 'infoDelivery' && data.info.progressState) {
-            if (data.event === 'infoDelivery' && data.info.currentTime >= data.info.progressState.duration - 2) {
+            if (data.event === 'infoDelivery' && data.info.currentTime >= data.info.progressState.duration - 10) {
               setShowBackdrop(true);
               clearInterval(interval);
             }

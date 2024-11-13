@@ -19,7 +19,9 @@ function App() {
         <Route path='/movie' element={<MovieDetails />}>
           <Route path=':movieId' element={<MovieDetails />} />
         </Route>
-        <Route path='/show-details' element={ <ShowDeatils />} />
+        <Route path='/show' element={<ShowDeatils />}>
+          <Route path=':showId' element={<ShowDeatils />} />
+        </Route>
         <Route path='/shows' element={ <Shows />} />
         <Route path='/search' element={ <Search />} />
       </Routes>
