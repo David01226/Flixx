@@ -222,6 +222,16 @@ ul {
   background: #0a4b8f;
 }
 
+/* Shows Page */
+.popular-shows {
+  margin-top: 100px;
+}
+
+.popular-shows h2{
+  margin-bottom: 20px;
+  text-align: center;
+}
+
 /* Footer */
 .main-footer {
   background: #141414;
@@ -309,13 +319,13 @@ section h2 {
   font-size: 30px!important;
 }
 
-.swiper-button-disabled {
-  opacity: 0!important;
-  transition: opacity 1s ease-in-out;
+.swiper:hover .swiper-button-next:not(.swiper-button-disabled), .swiper:hover .swiper-button-prev:not(.swiper-button-disabled) {
+  opacity: 1!important;
 }
 
-.swiper:hover .swiper-button-next, .swiper:hover .swiper-button-prev {
-  opacity: 1!important;
+.swiper-button-disabled {
+  opacity: 0!important;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .swiper:before {
@@ -356,6 +366,7 @@ section h2 {
   right: 0!important;
   width: unset!important;
   left: unset!important;
+  height: fit-content!important;
 }
 
 .swiper-pagination .swiper-pagination-bullet {

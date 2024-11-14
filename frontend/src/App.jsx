@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MovieDetails from "./pages/MovieDetails";
 import ShowDeatils from "./pages/ShowDetails";
 import Search from "./pages/Search";
+import Movies from "./pages/Movies";
 import Shows from "./pages/Shows";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path='/show' element={<ShowDeatils />}>
           <Route path=':showId' element={<ShowDeatils />} />
         </Route>
+        <Route path='/movies' element={ <Movies />} />
         <Route path='/shows' element={ <Shows />} />
         <Route path='/search' element={ <Search />} />
       </Routes>

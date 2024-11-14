@@ -7,6 +7,8 @@ const Footer = () => {
       <div className="container">
         <div className="logo"><span>FLIXX</span></div>
         <div className="social-links">
+          <a href="https://www.themoviedb.org/">
+          </a>
           <a href="https://www.facebook.com" target="_blank"
             ><i className="fab fa-facebook-f"></i
           ></a>
