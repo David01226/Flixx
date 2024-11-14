@@ -2,7 +2,7 @@ import React from 'react'
 import './ShowInfo.css'
 
 
-const ShowInfo = ({show}) => {
+const ShowInfo = ({show, youtubeURL, videoTitle}) => {
 
   if (!show) {
     return <></>
@@ -58,6 +58,21 @@ const ShowInfo = ({show}) => {
             <a href={show.homepage} target="_blank" rel="noopener noreferrer" className="btn">
               Visit Show Homepage
             </a>
+          </div>
+          <div className="details-top__vid-wrap">
+            <h2>Show {videoTitle}</h2>
+            <div className="details-top__vid">
+              {youtubeURL && (
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={youtubeURL}
+                  frameBorder="0"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              )}
+            </div>
           </div>
         </div>
         <div className="details-bottom">

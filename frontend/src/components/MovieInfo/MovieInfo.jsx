@@ -2,7 +2,7 @@ import React from 'react'
 import './MovieInfo.css'
 
 
-const MovieInfo = ({movie, youtubeURL}) => {
+const MovieInfo = ({movie, youtubeURL, videoTitle}) => {
 console.log(movie)
   function addCommasToNumber(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -62,6 +62,21 @@ console.log(movie)
             <a href={movie.homepage} target="_blank" rel="noopener noreferrer" className="more-info-btn btn ">
               Visit Movie Homepage
             </a>
+          </div>
+          <div className="details-top__vid-wrap">
+            <h2>Movie {videoTitle}</h2>
+            <div className="details-top__vid">
+              {youtubeURL && (
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={youtubeURL}
+                  frameBorder="0"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              )}
+            </div>
           </div>
         </div>
 

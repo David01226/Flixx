@@ -28,8 +28,10 @@ function displayPagination() {
   const div = document.createElement('div');
   div.classList.add('pagination');
   div.innerHTML = `
-      <button class="btn btn-primary" id="prev">Prev</button>
-      <button class="btn btn-primary" id="next">Next</button>
+      <div class="pagination-buttons">
+        <button class="btn btn-primary" id="prev">Prev</button>
+        <button class="btn btn-primary" id="next">Next</button>
+      </div>
       <div class="page-counter">Page ${global.search.page} of ${global.search.totalPages}</div>
   `
   document.querySelector('#pagination').appendChild(div);
@@ -82,17 +84,11 @@ function displayPagination() {
             />`
               }
             </a>
-            <div class="card-body">
-              <h5 class="card-title">${global.search.type === 'movie' ? result.title : result.name}</h5>
-              <p class="card-text">
-                <small class="text-muted">Release: ${global.search.type === 'movie' ? result.release_date : result.first_air_date}</small>
-              </p>
-            </div>
           `;
   
   
       document.querySelector('#search-results-heading').innerHTML = `
-          <h2>${results.length} of ${global.search.totalResults} Results for ${global.search.term}</h2>
+          <h2>${results.length} of ${global.search.totalResults} Results for "${global.search.term}"</h2>
       `    
       document.querySelector('#search-results').appendChild(div);
   
@@ -116,7 +112,7 @@ function displayPagination() {
       global.search.totalResults = total_results;
 
       if (results.length === 0) {
-        showAlert('No results found')
+        alert('No results found')
         return;
       }
 
@@ -124,8 +120,6 @@ function displayPagination() {
 
       document.querySelector('#search-term').value = '';
 
-    } else {
-      showAlert('Please enter a search term', 'error')
     }
   }
 

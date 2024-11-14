@@ -8,9 +8,9 @@ const Search = () => {
         <div id="alert"></div>
         <form action="/search" className="search-form">
           <div className="search-radio">
-            <input type="radio" id="movie" name="type" value="movie" checked />
+            <input type="radio" id="movies" name="type" value="movie" defaultChecked />
             <label htmlFor="movies">Movies</label>
-            <input type="radio" id="tv" name="type" value="tv" />
+            <input type="radio" id="shows" name="type" value="tv" />
             <label htmlFor="shows">TV Shows</label>
           </div>
           <div className="search-flex">
