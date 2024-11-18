@@ -60,11 +60,13 @@ export async function searchAPIData(global) {
   }
 
   try {
-    const response = await fetch(`${API_URL}search/${global.search.type}?api_key=${API_KEY}&language=en-US&query=${global.search.term}&page=${global.search.page}`);
+    const maxPages = 5;
+    const response = await fetch(`${API_URL}search/${global.search.type}?api_key=${API_KEY}&language=en-US&query=${global.search.term}&page=${Math.min(global.search.page, maxPages)}&results=100`);
     if (!response.ok) {
       throw new Error(`Error fetching data from endpoint /search: ${response.statusText}`);
     }
     const data = await response.json();
+    console.log(data)
     return data;
   } catch (error) {
     console.error('API fetch error:', error);

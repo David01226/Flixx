@@ -32,7 +32,7 @@ function displayPagination() {
         <button class="btn btn-primary" id="prev">Prev</button>
         <button class="btn btn-primary" id="next">Next</button>
       </div>
-      <div class="page-counter">Page ${global.search.page} of ${global.search.totalPages}</div>
+      <div class="page-counter">Page ${global.search.page} of ${global.search.totalPages > 5 ? '5' : global.search.totalPages}</div>
   `
   document.querySelector('#pagination').appendChild(div);
 
@@ -41,15 +41,17 @@ function displayPagination() {
     document.querySelector('#prev').disabled = true;
   } 
   // Disable next button if on last page
-  if (global.search.page === global.search.totalPages) {
+  if (global.search.page === 5 || global.search.page === global.search.totalPages) {
     document.querySelector('#next').disabled = true;
   } 
 
   // Next page
   document.querySelector('#next').addEventListener('click', async () => {
-    global.search.page++;
-    const { results, total_pages } = await searchAPIData(global);
-    displaySearchResults(results);
+    if (global.search.page < 5) {
+      global.search.page++;
+      const { results, total_pages } = await searchAPIData(global);
+      displaySearchResults(results);
+    }
   });
   // Prev page
   document.querySelector('#prev').addEventListener('click', async () => {
@@ -88,7 +90,7 @@ function displayPagination() {
   
   
       document.querySelector('#search-results-heading').innerHTML = `
-          <h2>${results.length} of ${global.search.totalResults} Results for "${global.search.term}"</h2>
+          <h2>${results.length * global.search.page} of ${global.search.totalResults > 100 ? '100' : global.search.totalResults} Results for "${global.search.term}"</h2>
       `    
       document.querySelector('#search-results').appendChild(div);
   

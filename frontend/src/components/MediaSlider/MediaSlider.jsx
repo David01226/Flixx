@@ -42,14 +42,15 @@ const MediaSlider = ({ title, endpoint, params }) => {
       <Swiper
           modules={[Navigation, Pagination, Scrollbar, Autoplay]}
           slidesPerView={2.5}
-          spaceBetween={15}
+          slidesPerGroup={2}
+          spaceBetween={8}
           freeMode={true}
           loop={false}
           navigation={true}
           pagination={true}
           breakpoints={{
-            767: { slidesPerView: 5.5 },
-            1025: { slidesPerView: 7 },
+            767: { slidesPerView: 5.5, slidesPerGroup: 5 },
+            1025: { slidesPerView: 7, slidesPerGroup: 7 },
           }}
         >
           {results.map((movie, i) => (

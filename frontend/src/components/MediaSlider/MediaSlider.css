@@ -3,7 +3,7 @@
 }
 
 .media-slider__media-poster {
-  border-radius: .2vw;
+  border-radius: 4px;
   overflow: hidden;
 }
 
@@ -12,4 +12,20 @@
   font-size: 1.4vw;
   font-weight: 500;
   margin: 0 0 .5em;
+}
+
+@media screen and (max-width: 1024px) {
+  .media-slider h3 {
+    font-size: 18px;
+  }
+
+  .media-slider {
+    margin-bottom: 50px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .media-slider {
+    margin-bottom: 40px;
+  }
 }
