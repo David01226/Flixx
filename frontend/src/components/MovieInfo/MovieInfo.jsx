@@ -1,9 +1,7 @@
 import React from 'react'
-import './MovieInfo.css'
-
 
 const MovieInfo = ({movie, youtubeURL, videoTitle}) => {
-console.log(movie)
+// console.log(movie)
   function addCommasToNumber(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }

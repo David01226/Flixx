@@ -14,7 +14,7 @@ const MovieDetails = () => {
 
   async function displayMovieDetails() {
     try {
-      console.log('Display Movie Details');
+      // console.log('Display Movie Details');
       const movieId = new URLSearchParams(window.location.search).get('id');
 
       // Fetch movie details

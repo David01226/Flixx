@@ -32,7 +32,6 @@ export async function fetchCustomAPIData(endpoint, params) {
   if (document.querySelector('.spinner')) {
     document.querySelector('.spinner').classList.add('show')
   }
-  console.log(`${API_URL}${endpoint}?api_key=${API_KEY}${params}`)
   try {
     const response = await fetch(`${API_URL}${endpoint}?api_key=${API_KEY}${params}`);
     if (!response.ok) {
@@ -66,7 +65,7 @@ export async function searchAPIData(global) {
       throw new Error(`Error fetching data from endpoint /search: ${response.statusText}`);
     }
     const data = await response.json();
-    console.log(data)
+    // console.log(data)
     return data;
   } catch (error) {
     console.error('API fetch error:', error);

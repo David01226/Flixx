@@ -26,7 +26,7 @@ const ShowDetails = () => {
       // Fetch video data for the TV show
       const videoData = await fetchAPIData(`tv/${showId}/videos`);
       const videos = videoData.results;
-      console.log(videos)
+      // console.log(videos)
 
       // Initialize the YouTube link
       let youtubeLink = "https://www.youtube.com/embed/";

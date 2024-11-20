@@ -1,6 +1,4 @@
 import React from 'react'
-import './ShowInfo.css'
-
 
 const ShowInfo = ({show, youtubeURL, videoTitle}) => {
 

@@ -1,0 +1,123 @@
+.main-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  /* background: #141414; */
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, .7) 10%, transparent);
+  transition: background 0.3s ease, background-color 0.3s ease;
+  z-index: 10;
+}
+
+.main-header__left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 45px;
+}
+
+.main-header .logo {
+  font-size: 28px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.main-header .logo a {
+  color: #e50914;
+}
+
+.main-header ul {
+  display: flex;
+}
+
+.main-header ul li {
+  margin-right: 20px;
+}
+
+.main-header ul li a {
+  font-size: 14px;
+  color: #e5e5e5;
+  transition: color .4s;
+}
+
+.main-header ul li a:hover {
+  color: #b3b3b3;
+}
+
+.main-header__right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.nav-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.main-header svg {
+  cursor: pointer;
+}
+
+.main-header__account {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.caret {
+    border-color: #fff transparent transparent;
+    border-style: solid;
+    border-width: 5px 5px 0;
+    height: 0;
+    margin-left: 10px;
+    transition: transform 367ms cubic-bezier(.21,0,.07,1);
+    width: 0;
+}
+
+@media screen and (max-width: 1024px) {
+  .main-header ul li a {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .main-header nav li:first-of-type {
+    display: none;
+  }
+  .main-header .logo {
+    font-size: 22px;
+  }
+  .main-header__left {
+    gap: 25px;
+  }
+  .main-header ul li a {
+    font-size: 14px;
+  }
+  .main-header__right {
+    gap: 15px;
+  }
+  .main-header svg {
+    width: 18px;
+    height: 18px;
+  }
+  .caret {
+    border-width: 4px 4px 0;
+    margin-left: 5px;
+  }
+  .main-header__account img {
+    width: 20px;
+  }
+}
