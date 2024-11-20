@@ -4,6 +4,9 @@ import './Footer.css'
 const Footer = () => {
   return (
     <footer className="main-footer">
+      <div className="footer-disclaimer container">
+        <p>This project uses data from <a href="https://www.themoviedb.org/?language=en-GB" target="_blank">TMDB</a> and draws inspiration from Netflix and is for educational purposes only.</p>
+      </div>
       <div className="container">
         <div className="logo"><span>FLIXX</span></div>
         <div className="social-links">
